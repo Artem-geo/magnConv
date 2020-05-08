@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class POSaero extends Magnetometer {
@@ -59,8 +60,8 @@ public class POSaero extends Magnetometer {
 				fw.write("GPST DATE_UTC TIME_UTC FIELD\n");
 				
 				for(int i=0; i<field.size(); i++) {
-					fw.write(String.format("%.3f ", convertToGPSTime(date.get(i))));
-					fw.write(returnFormatTime(date.get(i), super.pattern, tz) + " ");
+					fw.write(String.format(Locale.ENGLISH, "%.3f ", convertToGPSTime(date.get(i))));
+					fw.write(String.format(Locale.ENGLISH, "%s ", returnFormatTime(date.get(i), super.pattern.replace(",", "."), tz)));
 					fw.write(field.get(i) + "\n");
 				}
 				fw.close();

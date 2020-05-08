@@ -77,7 +77,7 @@ public class Minimag extends Magnetometer {
 				fw.write("GPST DATE_UTC TIME_UTC FIELD\n");
 				
 				for(int i=0; i<field.size(); i++) {
-					fw.write(String.format("%.3f ", convertToGPSTime(date.get(i))));
+					fw.write(String.format(Locale.ENGLISH, "%.3f ", convertToGPSTime(date.get(i))));
 					fw.write(returnFormatTime(date.get(i), super.pattern, tz) + " ");
 					fw.write(field.get(i) + "\n");
 				}

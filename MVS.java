@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class MVS extends Magnetometer {
@@ -64,7 +65,7 @@ public class MVS extends Magnetometer {
 				fw.write("GPST DATE_UTC TIME_UTC FIELD\n"); // headers of data columns
 				
 				for(int i=0; i<field.size(); i++) {
-					fw.write(String.format("%.3f ", convertToGPSTime(date.get(i))));
+					fw.write(String.format(Locale.ENGLISH, "%.3f ", convertToGPSTime(date.get(i))));
 					fw.write(returnFormatTime(this.date.get(i), super.pattern, tz) + " ");
 					fw.write(this.field.get(i) + "\n");
 				}

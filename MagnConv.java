@@ -10,7 +10,7 @@ public class MagnConv {
 		 * 		-pg - MMPOS (Overhauser magnetometer, Quantum Magnetometer Laboratory (Russia));
 		 * 		-g - GEM-19 (Overhauser magnetometer, GEM Systems (Canada));
 		 * 		-m - MINIMAG (Proton precession magnetometer (Russia));
-		 * 		-mq - МВС (Quantum magnetometer (Russia));
+		 * 		-mq - MVS (Quantum magnetometer (Russia));
 		 * 		-gs - Geoscan (Quantum magnetometer, Geoscan group of companies (Russia)).
 		 * 
 		 * args[1] - type of results format
@@ -33,7 +33,7 @@ public class MagnConv {
 		
 		
 		//================================================================
-		// Instantiation and initialization of input parameters
+//		 Instantiation and initialization of input parameters
 		String magType = "";
 		String resultsType = "";
 		String timeZone = "";
@@ -51,6 +51,12 @@ public class MagnConv {
 				pathToResultsFile = args[4];
 			}
 		//================================================================
+//		
+//		String magType = "-pg";
+//		String resultsType = "-f";
+//		String timeZone = "+10";
+//		String pathToDataFile = "c:\\Users\\USER\\Desktop\\pg.txt";
+//		String pathToResultsFile = "c:\\Users\\USER\\Desktop\\pg_res.txt";
 		
 			
 		// choose between different types of magnetometer

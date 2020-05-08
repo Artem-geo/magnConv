@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Geoscan extends Magnetometer {
@@ -59,10 +60,10 @@ public class Geoscan extends Magnetometer {
 				fw.write("GPST DATE_UTC TIME_UTC LAT LON HEIGHT PR PK FIELD\n");
 				
 				for(int i=0; i<field.size(); i++) {
-					fw.write(String.format("%.3f ", convertToGPSTime(date.get(i))));
+					fw.write(String.format(Locale.ENGLISH, "%.3f ", convertToGPSTime(date.get(i))));
 					fw.write(returnFormatTime(this.date.get(i), super.pattern.replace(",", "."), tz) + " ");
-					fw.write(String.format("%.7f %.7f %.1f ", this.lat.get(i), this.lon.get(i), this.heightMSL.get(i)));
-					fw.write(String.format("%.3f\n", this.field.get(i)));
+					fw.write(String.format(Locale.ENGLISH, "%.7f %.7f %.1f ", this.lat.get(i), this.lon.get(i), this.heightMSL.get(i)));
+					fw.write(String.format(Locale.ENGLISH, "%.3f\n", this.field.get(i)));
 				}
 				fw.close();
 			} catch (IOException e) {
