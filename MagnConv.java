@@ -1,11 +1,16 @@
 package magnConv;
 
+import java.io.FileReader;
+import java.util.Scanner;
+
 public class MagnConv {
 	
 	public static void main(String[] args) throws Exception {
+		
 		/*
-		 *  
-		 * args[0] - magnetometer type
+		 *args[0] - path to text file containing input parameters
+		 *
+		 * par1 - magnetometer type
 		 * 		-pa - POS1-aero (aero magnetometer, Quantum Magnetometry Laboratory (Russia));
 		 * 		-pg - MMPOS (Overhauser magnetometer, Quantum Magnetometer Laboratory (Russia));
 		 * 		-g - GEM-19 (Overhauser magnetometer, GEM Systems (Canada));
@@ -13,51 +18,52 @@ public class MagnConv {
 		 * 		-mq - MVS (Quantum magnetometer (Russia));
 		 * 		-gs - Geoscan (Quantum magnetometer, Geoscan group of companies (Russia)).
 		 * 
-		 * args[1] - type of results format
+		 * par2 - type of results format
 		 * 		-v - upgrade of file with variations (.bas);
 		 * 		-f - field data results.
 		 * 	File with field results will consist of such columns:
 		 * 		GPST - GPS time (amount of seconds from 00:00:00 06.01.1980)
 		 * 		DATE_UTC - UTC date (Universal Coordinated Time) in form YYYY/MM/DD
-		 * 		TIME_UTC - UTC time in format hh:mm:ss,SSS
+		 * 		TIME_UTC - UTC time in format hh:mm:ss.SSS
 		 * 		FIELD - field value after corrections (nT)
 		 * 
-		 * args[2] - time zone of data in file
+		 * par3 - time zone of data in file
 		 * 
-		 * args[3] - path to the file with data
+		 * par4 - path to the file with data
 		 * 
-		 * args[4] - path and name to the result's file
+		 * par5 - path and name to the result's file
 		 * Depends on result's type format. For -v - path to .bas file, for -f - path to resultant file.
 		 *  
 		 */		
 		
 		
 		//================================================================
-//		 Instantiation and initialization of input parameters
+//		Instantiation and initialization of input parameters
+		
 		String magType = "";
 		String resultsType = "";
 		String timeZone = "";
 		String pathToDataFile = "";
 		String pathToResultsFile = "";
+			
+		String path = args[0];
 		
-			if (args.length != 5) {
-				System.out.println("Wrong arguments value");
-				return;
-			} else {
-				magType = args[0];
-				resultsType = args[1];
-				timeZone = args[2];
-				pathToDataFile = args[3];
-				pathToResultsFile = args[4];
-			}
-		//================================================================
-//		
-//		String magType = "-pg";
-//		String resultsType = "-f";
-//		String timeZone = "+10";
-//		String pathToDataFile = "c:\\Users\\USER\\Desktop\\pg.txt";
-//		String pathToResultsFile = "c:\\Users\\USER\\Desktop\\pg_res.txt";
-		
+		try {
+			FileReader fr = new FileReader(path);
+			Scanner sc = new Scanner(fr);
+			
+			magType = sc.nextLine();
+			resultsType = sc.nextLine();
+			timeZone = sc.nextLine();
+			pathToDataFile = sc.nextLine();
+			pathToResultsFile = sc.nextLine();
+			
+			sc.close();
+			fr.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 			
 		// choose between different types of magnetometer
 		switch(magType) { 
